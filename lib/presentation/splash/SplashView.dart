@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_telegram_client/domain/entity/auth/AuthState.dart';
 import 'package:flutter_telegram_client/presentation/Strings.dart';
 import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
+import 'package:flutter_telegram_client/presentation/checkcode/CheckCodeView.dart';
 import 'package:flutter_telegram_client/presentation/home/HomeView.dart';
+import 'package:flutter_telegram_client/presentation/login/LoginView.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashCallback.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
 
@@ -24,9 +27,23 @@ class SplashView extends BaseView<SplashPresenter>
     setState(() {
       _noConnectionVisibility = !isConnection;
       if (isConnection) {
-        push(HomeWidget());
+        presenter.checkAuthorization();
       }
     });
+  }
+
+  onCheckAuthorizationComplete(AuthState authState) {
+    switch (authState) {
+      case AuthState.Ok:
+        push(HomeWidget());
+        break;
+      case AuthState.WaitCode:
+        push(CheckCodeWidget());
+        break;
+      case AuthState.WaitPhone:
+      default:
+        push(LoginWidget());
+    }
   }
 
   @override
