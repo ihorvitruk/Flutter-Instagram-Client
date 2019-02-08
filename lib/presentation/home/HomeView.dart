@@ -4,6 +4,7 @@ import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
 import 'package:flutter_telegram_client/presentation/chats/ChatsView.dart';
 import 'package:flutter_telegram_client/presentation/contacts/ContactsView.dart';
 import 'package:flutter_telegram_client/presentation/home/HomePresenter.dart';
+import 'package:flutter_telegram_client/presentation/home/HomeViewCallback.dart';
 import 'package:flutter_telegram_client/presentation/profile/ProfileView.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -11,20 +12,23 @@ class HomeWidget extends StatefulWidget {
   State<StatefulWidget> createState() => HomeView();
 }
 
-class HomeView extends BaseView<HomePresenter> {
-  int _currentIndex = 0;
-  final List<Widget> children = [
-    ContactsWidget(),
-    ChatsWidget(),
-    ProfileWidget()
-  ];
+class HomeView extends BaseView<HomePresenter> implements HomeViewCallback {
+  static const int _INDEX_CONTACTS = 0;
+  static const int _INDEX_CHATS = 1;
+  static const int _INDEX_PROFILE = 2;
+
+  int _currentIndex = _INDEX_CONTACTS;
+
+  final Map<int, Widget> children = Map();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(Strings.appBarTitle)),
+      appBar: AppBar(title: Text(Strings.appName)),
+      body:
+          children.putIfAbsent(_currentIndex, () => createChild(_currentIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTapped,
+        onTap: _onTapped,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
@@ -40,7 +44,19 @@ class HomeView extends BaseView<HomePresenter> {
     );
   }
 
-  void onTapped(int index) {
+  Widget createChild(int index) {
+    switch (index) {
+      case _INDEX_CONTACTS:
+        return ContactsWidget();
+      case _INDEX_CHATS:
+        return ChatsWidget();
+      case _INDEX_PROFILE:
+      default:
+        return ProfileWidget();
+    }
+  }
+
+  void _onTapped(int index) {
     setState(() {
       _currentIndex = index;
     });

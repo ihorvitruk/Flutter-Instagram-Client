@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_telegram_client/presentation/Strings.dart';
 import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
+import 'package:flutter_telegram_client/presentation/home/HomeView.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashCallback.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
 
@@ -10,7 +12,7 @@ class SplashWidget extends StatefulWidget {
 
 class SplashView extends BaseView<SplashPresenter>
     implements SplashViewCallback {
-  String _text = "Splash view";
+  String _text = Strings.appName;
 
   @override
   void initState() {
@@ -21,7 +23,8 @@ class SplashView extends BaseView<SplashPresenter>
   void onCheckInternetComplete(bool isConnection) {
     setState(() {
       if (isConnection) {
-        _text = "Ok connection";
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeWidget()));
       } else {
         _text = "No connection";
       }
