@@ -13,12 +13,6 @@ abstract class BaseView<P extends BasePresenter> extends State<StatefulWidget>
     presenter.view = this;
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   void onError(Object error) {
     print(error);
   }

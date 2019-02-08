@@ -8,14 +8,9 @@ class ChatsWidget extends StatefulWidget {
   State<StatefulWidget> createState() => ChatsView();
 }
 
-class ChatsView extends BaseView<ChatsPresenter>
-    with AutomaticKeepAliveClientMixin
-    implements ChatsViewCallback {
+class ChatsView extends BaseView<ChatsPresenter> implements ChatsViewCallback {
   @override
   Widget build(BuildContext context) {
     return Center(child: Text("Chats"));
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

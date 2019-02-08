@@ -19,16 +19,17 @@ class HomeView extends BaseView<HomePresenter> implements HomeViewCallback {
 
   int _currentIndex = _INDEX_CONTACTS;
 
-  final Map<int, Widget> children = Map();
+  ContactsWidget _contactsWidget = ContactsWidget();
+  ChatsWidget _chatsWidget = ChatsWidget();
+  ProfileWidget _profileWidget = ProfileWidget();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(Strings.appName)),
-      body:
-          children.putIfAbsent(_currentIndex, () => createChild(_currentIndex)),
+      body: getChild(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _onTapped,
+        onTap: (index) => setState(() => _currentIndex = index),
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
@@ -44,21 +45,18 @@ class HomeView extends BaseView<HomePresenter> implements HomeViewCallback {
     );
   }
 
-  Widget createChild(int index) {
+  Widget getChild(int index) {
     switch (index) {
       case _INDEX_CONTACTS:
-        return ContactsWidget();
+        return _contactsWidget;
+        break;
       case _INDEX_CHATS:
-        return ChatsWidget();
+        return _chatsWidget;
+        break;
       case _INDEX_PROFILE:
       default:
-        return ProfileWidget();
+        return _profileWidget;
+        break;
     }
-  }
-
-  void _onTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
   }
 }
