@@ -12,24 +12,48 @@ class HomeWidget extends StatefulWidget {
   State<StatefulWidget> createState() => HomeView();
 }
 
-class HomeView extends BaseView<HomePresenter> implements HomeViewCallback {
+class HomeView extends BaseView<HomeWidget, HomePresenter>
+    implements HomeViewCallback {
   static const int _INDEX_CONTACTS = 0;
   static const int _INDEX_CHATS = 1;
   static const int _INDEX_PROFILE = 2;
 
+  static final Key _keyContacts = PageStorageKey(_INDEX_CONTACTS);
+  static final Key _keyChats = PageStorageKey(_INDEX_CHATS);
+  static final Key _keyProfile = PageStorageKey(_INDEX_PROFILE);
+
   int _currentIndex = _INDEX_CONTACTS;
 
-  ContactsWidget _contactsWidget = ContactsWidget();
-  ChatsWidget _chatsWidget = ChatsWidget();
-  ProfileWidget _profileWidget = ProfileWidget();
+  PageStorageBucket _bucket = PageStorageBucket();
+
+  ContactsWidget _contactsWidget;
+  ChatsWidget _chatsWidget;
+  ProfileWidget _profileWidget;
+
+  List<Widget> _children;
+
+  Widget _currentChild;
+
+  @override
+  void initState() {
+    _contactsWidget = ContactsWidget(_keyContacts);
+    _chatsWidget = ChatsWidget(_keyChats);
+    _profileWidget = ProfileWidget(_keyProfile);
+    _children = [_contactsWidget, _chatsWidget, _profileWidget];
+    _currentChild = _contactsWidget;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(Strings.appName)),
-      body: getChild(_currentIndex),
+      body: PageStorage(bucket: _bucket, child: _currentChild),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) => setState(() => _currentIndex = index),
+        onTap: (index) => setState(() {
+              _currentIndex = index;
+              _currentChild = _children[index];
+            }),
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
@@ -43,20 +67,5 @@ class HomeView extends BaseView<HomePresenter> implements HomeViewCallback {
         ],
       ),
     );
-  }
-
-  Widget getChild(int index) {
-    switch (index) {
-      case _INDEX_CONTACTS:
-        return _contactsWidget;
-        break;
-      case _INDEX_CHATS:
-        return _chatsWidget;
-        break;
-      case _INDEX_PROFILE:
-      default:
-        return _profileWidget;
-        break;
-    }
   }
 }
