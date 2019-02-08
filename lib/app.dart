@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:flutter_telegram_client/data/NetworkRepositoryImpl.dart';
 import 'package:flutter_telegram_client/domain/NetworkRepository.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashPageView.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashPage.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPagePresenter.dart';
 
 void main() {

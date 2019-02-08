@@ -1,9 +1,8 @@
 import 'package:flutter_telegram_client/domain/NetworkRepository.dart';
 import 'package:flutter_telegram_client/presentation/base/BasePresenter.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashPageState.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashPageView.dart';
 
-class SplashPagePresenter extends BasePresenter {
-
+class SplashPagePresenter extends BasePresenter<SplashPageView> {
   NetworkRepository _networkRepository;
 
   SplashPagePresenter(this._networkRepository);
@@ -13,8 +12,7 @@ class SplashPagePresenter extends BasePresenter {
         Duration(seconds: 5),
         () => _networkRepository
             .checkConnection()
-            .then((isConnection) =>
-                splashPageState?.onCheckInternetComplete(isConnection))
-            .catchError((error) => splashPageState?.onError(error)));
+            .then((isConnection) => view.onCheckInternetComplete(isConnection))
+            .catchError((error) => view.onError(error)));
   }
 }
