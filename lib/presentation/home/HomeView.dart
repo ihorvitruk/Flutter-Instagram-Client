@@ -12,47 +12,19 @@ class HomeWidget extends StatefulWidget {
   State<StatefulWidget> createState() => HomeView();
 }
 
-class HomeView extends BaseView<HomeWidget, HomePresenter>
+class HomeView extends BaseView<HomePresenter>
     implements HomeViewCallback {
-  static const int _INDEX_CONTACTS = 0;
-  static const int _INDEX_CHATS = 1;
-  static const int _INDEX_PROFILE = 2;
-
-  static final Key _keyContacts = PageStorageKey(_INDEX_CONTACTS);
-  static final Key _keyChats = PageStorageKey(_INDEX_CHATS);
-  static final Key _keyProfile = PageStorageKey(_INDEX_PROFILE);
-
-  int _currentIndex = _INDEX_CONTACTS;
-
-  PageStorageBucket _bucket = PageStorageBucket();
-
-  ContactsWidget _contactsWidget;
-  ChatsWidget _chatsWidget;
-  ProfileWidget _profileWidget;
-
-  List<Widget> _children;
-
-  Widget _currentChild;
-
-  @override
-  void initState() {
-    _contactsWidget = ContactsWidget(_keyContacts);
-    _chatsWidget = ChatsWidget(_keyChats);
-    _profileWidget = ProfileWidget(_keyProfile);
-    _children = [_contactsWidget, _chatsWidget, _profileWidget];
-    _currentChild = _contactsWidget;
-    super.initState();
-  }
+  int _currentIndex = 0;
+  List<Widget> _children = [ContactsWidget(), ChatsWidget(), ProfileWidget()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(Strings.appName)),
-      body: PageStorage(bucket: _bucket, child: _currentChild),
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) => setState(() {
               _currentIndex = index;
-              _currentChild = _children[index];
             }),
         currentIndex: _currentIndex,
         items: [

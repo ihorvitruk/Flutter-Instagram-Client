@@ -6,13 +6,11 @@ import 'package:flutter_telegram_client/presentation/profile/ProfilePresenter.da
 import 'package:flutter_telegram_client/presentation/profile/ProfileViewCallback.dart';
 
 class ProfileWidget extends StatefulWidget {
-  ProfileWidget(Key key) : super(key: key);
-
   @override
   ProfileView createState() => ProfileView();
 }
 
-class ProfileView extends BaseView<ProfileWidget, ProfilePresenter>
+class ProfileView extends BaseView<ProfilePresenter>
     implements ProfileViewCallback {
   static const String _KEY_NUMBER = "number";
 
@@ -20,7 +18,8 @@ class ProfileView extends BaseView<ProfileWidget, ProfilePresenter>
   Widget build(BuildContext context) {
     int number = readStorageValue(_KEY_NUMBER);
     if (number == null) {
-      writeStorageValue(_KEY_NUMBER, Random().nextInt(1000));
+      number = Random().nextInt(1000);
+      writeStorageValue(_KEY_NUMBER, number);
     }
     return Center(
         child: MaterialButton(

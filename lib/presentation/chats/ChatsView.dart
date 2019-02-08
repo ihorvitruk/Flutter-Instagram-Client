@@ -4,13 +4,11 @@ import 'package:flutter_telegram_client/presentation/chats/ChatsPresenter.dart';
 import 'package:flutter_telegram_client/presentation/chats/ChatsViewCallback.dart';
 
 class ChatsWidget extends StatefulWidget {
-  ChatsWidget(Key key) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => ChatsView();
 }
 
-class ChatsView extends BaseView<ChatsWidget, ChatsPresenter>
+class ChatsView extends BaseView<ChatsPresenter>
     implements ChatsViewCallback {
   @override
   Widget build(BuildContext context) {

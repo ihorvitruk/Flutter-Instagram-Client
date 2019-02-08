@@ -10,7 +10,7 @@ class SplashWidget extends StatefulWidget {
   State<StatefulWidget> createState() => SplashView();
 }
 
-class SplashView extends BaseView<SplashWidget, SplashPresenter>
+class SplashView extends BaseView<SplashPresenter>
     implements SplashViewCallback {
   String _text = Strings.appName;
 
