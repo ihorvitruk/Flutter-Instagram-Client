@@ -1,11 +1,11 @@
 import 'package:flutter_telegram_client/domain/NetworkRepository.dart';
 import 'package:flutter_telegram_client/presentation/base/BasePresenter.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashPageView.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashView.dart';
 
-class SplashPagePresenter extends BasePresenter<SplashPageView> {
+class SplashPresenter extends BasePresenter<SplashView> {
   NetworkRepository _networkRepository;
 
-  SplashPagePresenter(this._networkRepository);
+  SplashPresenter(this._networkRepository);
 
   void checkConnection() async {
     Future.delayed(

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashPagePresenter.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashCallback.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
 
-class SplashPageView extends BaseView<SplashPagePresenter> {
-  String _text = "Splash page";
+class SplashWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => SplashView();
+}
+
+class SplashView extends BaseView<SplashPresenter>
+    implements SplashViewCallback {
+  String _text = "Splash view";
 
   @override
   void initState() {
@@ -19,11 +26,6 @@ class SplashPageView extends BaseView<SplashPagePresenter> {
         _text = "No connection";
       }
     });
-  }
-
-  @override
-  void onError(Object error) {
-    print(error);
   }
 
   @override
