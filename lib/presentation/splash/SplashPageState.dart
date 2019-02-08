@@ -3,7 +3,7 @@ import 'package:flutter_telegram_client/presentation/base/BaseState.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPagePresenter.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPageView.dart';
 
-class SplashPageState extends BaseState<SplashPageView, SplashPagePresenter> {
+class SplashPageState extends BaseState<SplashPage, SplashPagePresenter> {
   String _text = "Splash page";
 
   SplashPageState() {
