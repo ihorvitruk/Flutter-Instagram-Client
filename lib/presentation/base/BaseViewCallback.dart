@@ -1,3 +1,3 @@
 abstract class BaseViewCallback {
-  void onError(Object error);
+  onError(Object error);
 }

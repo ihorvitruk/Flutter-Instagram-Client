@@ -9,12 +9,12 @@ import 'package:flutter_telegram_client/presentation/profile/ProfilePresenter.da
 import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashView.dart';
 
-void main() {
+main() {
   inject();
   runApp(MyApp());
 }
 
-void inject() {
+inject() {
   var injector = Injector.getInjector();
 
   //repositories

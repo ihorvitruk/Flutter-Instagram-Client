@@ -12,21 +12,19 @@ class SplashWidget extends StatefulWidget {
 
 class SplashView extends BaseView<SplashPresenter>
     implements SplashViewCallback {
-  String _text = Strings.appName;
+  bool _noConnectionVisibility = false;
 
   @override
-  void initState() {
-    presenter.checkConnection();
+  initState() {
+    _checkConnection();
     super.initState();
   }
 
-  void onCheckInternetComplete(bool isConnection) {
+  onCheckInternetComplete(bool isConnection) {
     setState(() {
+      _noConnectionVisibility = !isConnection;
       if (isConnection) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeWidget()));
-      } else {
-        _text = "No connection";
+        push(HomeWidget());
       }
     });
   }
@@ -34,6 +32,23 @@ class SplashView extends BaseView<SplashPresenter>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(child: Text(_text, style: TextStyle(color: Colors.red))));
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+          Text(Strings.appName),
+          Visibility(
+              visible: _noConnectionVisibility,
+              child: MaterialButton(
+                  onPressed: () => _checkConnection(),
+                  child: Text(Strings.noConnectionButtonText)))
+        ])));
+  }
+
+  _checkConnection() {
+    setState(() {
+      _noConnectionVisibility = false;
+      presenter.checkConnection();
+    });
   }
 }

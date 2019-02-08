@@ -7,7 +7,7 @@ class SplashPresenter extends BasePresenter<SplashView> {
 
   SplashPresenter(this._networkRepository);
 
-  void checkConnection() async {
+  checkConnection() async {
     Future.delayed(
         Duration(seconds: 5),
         () => _networkRepository
