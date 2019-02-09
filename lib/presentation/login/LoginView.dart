@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/login/LoginPresenter.dart';
-import 'package:flutter_telegram_client/presentation/login/LoginViewCallback.dart';
+import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/login/LoginPresenter.dart';
+import 'package:flutter_instagram_client/presentation/login/LoginViewCallback.dart';
 
 class LoginView extends BaseView<LoginState> {
   @override

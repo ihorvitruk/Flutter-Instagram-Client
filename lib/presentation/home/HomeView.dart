@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_telegram_client/presentation/Strings.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/chats/ChatsView.dart';
-import 'package:flutter_telegram_client/presentation/contacts/ContactsView.dart';
-import 'package:flutter_telegram_client/presentation/home/HomePresenter.dart';
-import 'package:flutter_telegram_client/presentation/home/HomeViewCallback.dart';
-import 'package:flutter_telegram_client/presentation/profile/ProfileView.dart';
+import 'package:flutter_instagram_client/presentation/Strings.dart';
+import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/chats/ChatsView.dart';
+import 'package:flutter_instagram_client/presentation/contacts/ContactsView.dart';
+import 'package:flutter_instagram_client/presentation/home/HomePresenter.dart';
+import 'package:flutter_instagram_client/presentation/home/HomeViewCallback.dart';
+import 'package:flutter_instagram_client/presentation/profile/ProfileView.dart';
 
 class HomeView extends BaseView<HomeState> {
   @override

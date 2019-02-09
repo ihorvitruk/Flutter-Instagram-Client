@@ -1,6 +1,6 @@
-# flutter_telegram_client
+# flutter_instagram_client
 
-Telegram client written with Flutter
+Instagram client written with Flutter
 
 ## Getting Started
 

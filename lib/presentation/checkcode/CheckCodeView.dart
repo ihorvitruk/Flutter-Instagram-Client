@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/checkcode/CheckCodePresenter.dart';
-import 'package:flutter_telegram_client/presentation/checkcode/CheckCodeViewCallback.dart';
+import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/checkcode/CheckCodePresenter.dart';
+import 'package:flutter_instagram_client/presentation/checkcode/CheckCodeViewCallback.dart';
 
 class CheckCodeView extends BaseView<CheckCodeState> {
   @override

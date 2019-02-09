@@ -1,4 +1,4 @@
-package com.horvitruk.fluttertelegramclient;
+package com.horvitruk.flutterinstagramclient;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

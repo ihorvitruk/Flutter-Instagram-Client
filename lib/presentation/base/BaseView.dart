@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
-import 'package:flutter_telegram_client/presentation/base/BasePresenter.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseViewCallback.dart';
+import 'package:flutter_instagram_client/presentation/base/BasePresenter.dart';
+import 'package:flutter_instagram_client/presentation/base/BaseViewCallback.dart';
 
 abstract class BaseView<S extends State<StatefulWidget>>
     extends StatefulWidget {

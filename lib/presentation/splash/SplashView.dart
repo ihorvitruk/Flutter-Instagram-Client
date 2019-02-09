@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_telegram_client/domain/entity/auth/AuthState.dart';
-import 'package:flutter_telegram_client/presentation/Strings.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/checkcode/CheckCodeView.dart';
-import 'package:flutter_telegram_client/presentation/home/HomeView.dart';
-import 'package:flutter_telegram_client/presentation/login/LoginView.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashCallback.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
+import 'package:flutter_instagram_client/domain/entity/auth/AuthState.dart';
+import 'package:flutter_instagram_client/presentation/Strings.dart';
+import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/checkcode/CheckCodeView.dart';
+import 'package:flutter_instagram_client/presentation/home/HomeView.dart';
+import 'package:flutter_instagram_client/presentation/login/LoginView.dart';
+import 'package:flutter_instagram_client/presentation/splash/SplashCallback.dart';
+import 'package:flutter_instagram_client/presentation/splash/SplashPresenter.dart';
 
 class SplashView extends BaseView<SplashState> {
   @override

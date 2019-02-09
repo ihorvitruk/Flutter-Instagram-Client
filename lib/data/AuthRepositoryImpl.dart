@@ -1,5 +1,5 @@
-import 'package:flutter_telegram_client/domain/entity/auth/AuthState.dart';
-import 'package:flutter_telegram_client/domain/repository/AuthRepository.dart';
+import 'package:flutter_instagram_client/domain/entity/auth/AuthState.dart';
+import 'package:flutter_instagram_client/domain/repository/AuthRepository.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   @override

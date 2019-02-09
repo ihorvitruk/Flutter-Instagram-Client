@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
-import 'package:flutter_telegram_client/data/AuthRepositoryImpl.dart';
-import 'package:flutter_telegram_client/data/NetworkRepositoryImpl.dart';
-import 'package:flutter_telegram_client/domain/repository/AuthRepository.dart';
-import 'package:flutter_telegram_client/domain/repository/NetworkRepository.dart';
-import 'package:flutter_telegram_client/presentation/chats/ChatsPresenter.dart';
-import 'package:flutter_telegram_client/presentation/checkcode/CheckCodePresenter.dart';
-import 'package:flutter_telegram_client/presentation/contacts/ContactsPresenter.dart';
-import 'package:flutter_telegram_client/presentation/home/HomePresenter.dart';
-import 'package:flutter_telegram_client/presentation/login/LoginPresenter.dart';
-import 'package:flutter_telegram_client/presentation/profile/ProfilePresenter.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashView.dart';
+import 'package:flutter_instagram_client/data/AuthRepositoryImpl.dart';
+import 'package:flutter_instagram_client/data/NetworkRepositoryImpl.dart';
+import 'package:flutter_instagram_client/domain/repository/AuthRepository.dart';
+import 'package:flutter_instagram_client/domain/repository/NetworkRepository.dart';
+import 'package:flutter_instagram_client/presentation/chats/ChatsPresenter.dart';
+import 'package:flutter_instagram_client/presentation/checkcode/CheckCodePresenter.dart';
+import 'package:flutter_instagram_client/presentation/contacts/ContactsPresenter.dart';
+import 'package:flutter_instagram_client/presentation/home/HomePresenter.dart';
+import 'package:flutter_instagram_client/presentation/login/LoginPresenter.dart';
+import 'package:flutter_instagram_client/presentation/profile/ProfilePresenter.dart';
+import 'package:flutter_instagram_client/presentation/splash/SplashPresenter.dart';
+import 'package:flutter_instagram_client/presentation/splash/SplashView.dart';
 
 main() {
   inject();

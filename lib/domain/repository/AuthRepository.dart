@@ -1,4 +1,4 @@
-import 'package:flutter_telegram_client/domain/entity/auth/AuthState.dart';
+import 'package:flutter_instagram_client/domain/entity/auth/AuthState.dart';
 
 abstract class AuthRepository {
   Future<AuthState> getAuthState();

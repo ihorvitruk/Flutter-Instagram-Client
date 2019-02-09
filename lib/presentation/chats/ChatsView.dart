@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/chats/ChatsPresenter.dart';
-import 'package:flutter_telegram_client/presentation/chats/ChatsViewCallback.dart';
+import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/chats/ChatsPresenter.dart';
+import 'package:flutter_instagram_client/presentation/chats/ChatsViewCallback.dart';
 
 class ChatsView extends BaseView<ChatsState> {
   @override
