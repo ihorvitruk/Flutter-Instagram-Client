@@ -11,7 +11,7 @@ import 'package:flutter_telegram_client/presentation/home/HomePresenter.dart';
 import 'package:flutter_telegram_client/presentation/login/LoginPresenter.dart';
 import 'package:flutter_telegram_client/presentation/profile/ProfilePresenter.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashView.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashState.dart';
 
 main() {
   inject();

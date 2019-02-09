@@ -1,16 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
+import 'package:flutter_telegram_client/presentation/base/BaseState.dart';
 import 'package:flutter_telegram_client/presentation/profile/ProfilePresenter.dart';
 import 'package:flutter_telegram_client/presentation/profile/ProfileViewCallback.dart';
 
 class ProfileWidget extends StatefulWidget {
   @override
-  ProfileView createState() => ProfileView();
+  ProfileState createState() => ProfileState();
 }
 
-class ProfileView extends BaseView<ProfilePresenter>
+class ProfileState extends BaseState<ProfilePresenter>
     implements ProfileViewCallback {
   static const String _KEY_NUMBER = "number";
 

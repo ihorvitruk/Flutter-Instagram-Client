@@ -1,9 +1,9 @@
 import 'package:flutter_telegram_client/domain/repository/AuthRepository.dart';
 import 'package:flutter_telegram_client/domain/repository/NetworkRepository.dart';
 import 'package:flutter_telegram_client/presentation/base/BasePresenter.dart';
-import 'package:flutter_telegram_client/presentation/splash/SplashView.dart';
+import 'package:flutter_telegram_client/presentation/splash/SplashState.dart';
 
-class SplashPresenter extends BasePresenter<SplashView> {
+class SplashPresenter extends BasePresenter<SplashState> {
   NetworkRepository _networkRepository;
   AuthRepository _authRepository;
 

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_telegram_client/domain/entity/auth/AuthState.dart';
 import 'package:flutter_telegram_client/presentation/Strings.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
-import 'package:flutter_telegram_client/presentation/checkcode/CheckCodeView.dart';
-import 'package:flutter_telegram_client/presentation/home/HomeView.dart';
-import 'package:flutter_telegram_client/presentation/login/LoginView.dart';
+import 'package:flutter_telegram_client/presentation/base/BaseState.dart';
+import 'package:flutter_telegram_client/presentation/checkcode/CheckCodeState.dart';
+import 'package:flutter_telegram_client/presentation/home/HomeState.dart';
+import 'package:flutter_telegram_client/presentation/login/LoginState.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashCallback.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
 
 class SplashWidget extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => SplashView();
+  State<StatefulWidget> createState() => SplashState();
 }
 
-class SplashView extends BaseView<SplashPresenter>
+class SplashState extends BaseState<SplashPresenter>
     implements SplashViewCallback {
   bool _noConnectionVisibility = false;
 
