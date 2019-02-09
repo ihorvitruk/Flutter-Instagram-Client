@@ -7,15 +7,14 @@ import 'package:flutter_telegram_client/presentation/home/HomePresenter.dart';
 import 'package:flutter_telegram_client/presentation/home/HomeViewCallback.dart';
 import 'package:flutter_telegram_client/presentation/profile/ProfileView.dart';
 
-class HomeWidget extends StatefulWidget {
+class HomeView extends BaseView<HomeState> {
   @override
-  State<StatefulWidget> createState() => HomeView();
+  HomeState state() => HomeState();
 }
 
-class HomeView extends BaseView<HomePresenter>
-    implements HomeViewCallback {
+class HomeState extends BaseState<HomePresenter> implements HomeViewCallback {
   int _currentIndex = 0;
-  List<Widget> _children = [ContactsWidget(), ChatsWidget(), ProfileWidget()];
+  List<Widget> _children = [ContactsView(), ChatsView(), ProfileView()];
 
   @override
   Widget build(BuildContext context) {

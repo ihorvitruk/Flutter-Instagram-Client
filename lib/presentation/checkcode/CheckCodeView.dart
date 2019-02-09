@@ -3,12 +3,12 @@ import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
 import 'package:flutter_telegram_client/presentation/checkcode/CheckCodePresenter.dart';
 import 'package:flutter_telegram_client/presentation/checkcode/CheckCodeViewCallback.dart';
 
-class CheckCodeWidget extends StatefulWidget {
+class CheckCodeView extends BaseView<CheckCodeState> {
   @override
-  State<StatefulWidget> createState() => CheckCodeView();
+  CheckCodeState state() => CheckCodeState();
 }
 
-class CheckCodeView extends BaseView<CheckCodePresenter>
+class CheckCodeState extends BaseState<CheckCodePresenter>
     implements CheckCodeViewCallback {
   @override
   Widget build(BuildContext context) {

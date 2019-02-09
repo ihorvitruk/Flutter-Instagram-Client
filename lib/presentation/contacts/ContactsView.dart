@@ -3,12 +3,12 @@ import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
 import 'package:flutter_telegram_client/presentation/contacts/ContactsPresenter.dart';
 import 'package:flutter_telegram_client/presentation/contacts/ContactsViewCallback.dart';
 
-class ContactsWidget extends StatefulWidget {
+class ContactsView extends BaseView<ContactsState> {
   @override
-  State<StatefulWidget> createState() => ContactsView();
+  ContactsState state() => ContactsState();
 }
 
-class ContactsView extends BaseView<ContactsPresenter>
+class ContactsState extends BaseState<ContactsPresenter>
     implements ContactsViewCallback {
   @override
   Widget build(BuildContext context) {

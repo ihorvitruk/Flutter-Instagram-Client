@@ -4,7 +4,7 @@ import 'package:flutter_telegram_client/domain/repository/AuthRepository.dart';
 class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<AuthState> getAuthState() {
-    return Future.value(AuthState.WaitPhone);
+    return Future.value(AuthState.Ok);
   }
 
   @override

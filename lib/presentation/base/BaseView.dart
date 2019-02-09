@@ -3,12 +3,20 @@ import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:flutter_telegram_client/presentation/base/BasePresenter.dart';
 import 'package:flutter_telegram_client/presentation/base/BaseViewCallback.dart';
 
-abstract class BaseView<P extends BasePresenter> extends State<StatefulWidget>
+abstract class BaseView<S extends State<StatefulWidget>>
+    extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => state();
+
+  S state();
+}
+
+abstract class BaseState<P extends BasePresenter> extends State<BaseView>
     implements BaseViewCallback {
   @protected
   P presenter;
 
-  BaseView() {
+  BaseState() {
     presenter = Injector.getInjector().get();
     presenter.view = this;
   }
@@ -28,7 +36,7 @@ abstract class BaseView<P extends BasePresenter> extends State<StatefulWidget>
   }
 
   @protected
-  push(Widget widget, {bool withReplacement = true}) {
+  push(BaseView widget, {bool withReplacement = true}) {
     var route = MaterialPageRoute(builder: (context) => widget);
     if (withReplacement) {
       Navigator.pushReplacement(context, route);

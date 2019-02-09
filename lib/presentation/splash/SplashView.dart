@@ -8,12 +8,12 @@ import 'package:flutter_telegram_client/presentation/login/LoginView.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashCallback.dart';
 import 'package:flutter_telegram_client/presentation/splash/SplashPresenter.dart';
 
-class SplashWidget extends StatefulWidget {
+class SplashView extends BaseView<SplashState> {
   @override
-  State<StatefulWidget> createState() => SplashView();
+  SplashState state() => SplashState();
 }
 
-class SplashView extends BaseView<SplashPresenter>
+class SplashState extends BaseState<SplashPresenter>
     implements SplashViewCallback {
   bool _noConnectionVisibility = false;
 
@@ -35,14 +35,14 @@ class SplashView extends BaseView<SplashPresenter>
   onCheckAuthorizationComplete(AuthState authState) {
     switch (authState) {
       case AuthState.Ok:
-        push(HomeWidget());
+        push(HomeView());
         break;
       case AuthState.WaitCode:
-        push(CheckCodeWidget());
+        push(CheckCodeView());
         break;
       case AuthState.WaitPhone:
       default:
-        push(LoginWidget());
+        push(LoginView());
     }
   }
 

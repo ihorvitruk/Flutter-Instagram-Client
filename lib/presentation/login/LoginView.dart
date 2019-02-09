@@ -3,12 +3,13 @@ import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
 import 'package:flutter_telegram_client/presentation/login/LoginPresenter.dart';
 import 'package:flutter_telegram_client/presentation/login/LoginViewCallback.dart';
 
-class LoginWidget extends StatefulWidget {
+class LoginView extends BaseView<LoginState> {
   @override
-  State<StatefulWidget> createState() => LoginView();
+  LoginState state() => LoginState();
 }
 
-class LoginView extends BaseView<LoginPresenter> implements LoginViewCallback {
+class LoginState extends BaseState<LoginPresenter>
+    implements LoginViewCallback {
   @override
   Widget build(BuildContext context) {
     return Center(child: Text("Login"));
