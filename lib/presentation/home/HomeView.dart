@@ -14,7 +14,7 @@ class HomeView extends BaseView<HomeState> {
 
 class HomeState extends BaseState<HomePresenter> implements HomeViewCallback {
   int _currentIndex = 0;
-  List<Widget> _children = [ContactsView(), ChatsView(), ProfileView()];
+  List<BaseView> _children = [ContactsView(), ChatsView(), ProfileView()];
 
   @override
   Widget build(BuildContext context) {
