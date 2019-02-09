@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_telegram_client/presentation/Strings.dart';
-import 'package:flutter_telegram_client/presentation/base/BaseState.dart';
-import 'package:flutter_telegram_client/presentation/chats/ChatsState.dart';
-import 'package:flutter_telegram_client/presentation/contacts/ContactsState.dart';
+import 'package:flutter_telegram_client/presentation/base/BaseView.dart';
+import 'package:flutter_telegram_client/presentation/chats/ChatsView.dart';
+import 'package:flutter_telegram_client/presentation/contacts/ContactsView.dart';
 import 'package:flutter_telegram_client/presentation/home/HomePresenter.dart';
 import 'package:flutter_telegram_client/presentation/home/HomeViewCallback.dart';
-import 'package:flutter_telegram_client/presentation/profile/ProfileState.dart';
+import 'package:flutter_telegram_client/presentation/profile/ProfileView.dart';
 
 class HomeWidget extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => HomeState();
+  State<StatefulWidget> createState() => HomeView();
 }
 
-class HomeState extends BaseState<HomePresenter>
+class HomeView extends BaseView<HomePresenter>
     implements HomeViewCallback {
   int _currentIndex = 0;
   List<Widget> _children = [ContactsWidget(), ChatsWidget(), ProfileWidget()];
