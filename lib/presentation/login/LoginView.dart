@@ -12,6 +12,18 @@ class LoginState extends BaseState<LoginPresenter>
     implements LoginViewCallback {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Login"));
+    return Scaffold(
+        body: Center(
+            child: MaterialButton(
+                color: Colors.blue,
+                onPressed: () {
+                  presenter.authorize();
+                },
+                child: Text("Login with Instagram"))));
+  }
+
+  @override
+  onTokenReceived(String token) {
+    print(token);
   }
 }

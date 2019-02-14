@@ -12,14 +12,14 @@ class SplashPresenter extends BasePresenter<SplashState> {
   checkConnection() async {
     _networkRepository
         .checkConnection()
-        .then((isConnection) => view.onCheckInternetComplete(isConnection))
-        .catchError((error) => view.onError(error));
+        .then(view.onCheckInternetComplete)
+        .catchError(view.onError);
   }
 
   checkAuthorization() async {
     _authRepository
         .getAuthState()
-        .then((authState) => view.onCheckAuthorizationComplete(authState))
-        .catchError((error) => view.onError(error));
+        .then(view.onCheckAuthorizationComplete)
+        .catchError(view.onError);
   }
 }
