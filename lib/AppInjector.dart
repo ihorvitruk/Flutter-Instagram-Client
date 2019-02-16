@@ -1,6 +1,6 @@
-import 'package:flutter_instagram_client/data/AuthRepositoryImpl.dart';
-import 'package:flutter_instagram_client/data/NetworkRepositoryImpl.dart';
-import 'package:flutter_instagram_client/data/SecureStorageRepositoryImpl.dart';
+import 'package:flutter_instagram_client/data/repository/AuthRepositoryImpl.dart';
+import 'package:flutter_instagram_client/data/repository/NetworkRepositoryImpl.dart';
+import 'package:flutter_instagram_client/data/repository/SecureStorageRepositoryImpl.dart';
 import 'package:flutter_instagram_client/domain/repository/AuthRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/NetworkRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/SecureStorageRepository.dart';
