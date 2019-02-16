@@ -36,8 +36,8 @@ class AuthRepositoryImpl extends AuthRepository {
 
     Map<String, dynamic> appCredentials =
         await parseJsonFromAssets("assets/creds.json");
-    String appId = appCredentials.putIfAbsent(APP_ID_KEY, () => "");
-    String appSecret = appCredentials.putIfAbsent(APP_SECRET_KEY, () => "");
+    String appId = appCredentials[APP_ID_KEY];
+    String appSecret = appCredentials[APP_SECRET_KEY];
 
     final authUrl =
         "$_apiUrl$API_AUTH?client_id=$appId&redirect_uri=$REDIRECT_URI&response_type=code";
@@ -59,7 +59,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
     Map<String, dynamic> tokenParams = jsonDecode(response.body);
     await _secureStorageRepository.saveValue(
-        STORAGE_KEY_TOKEN, tokenParams.putIfAbsent("access_token", () => null));
+        STORAGE_KEY_TOKEN, tokenParams["access_token"]);
     return await isLoggedIn();
   }
 
