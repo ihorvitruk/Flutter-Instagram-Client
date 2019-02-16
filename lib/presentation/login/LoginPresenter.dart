@@ -9,8 +9,8 @@ class LoginPresenter extends BasePresenter<LoginViewCallback> {
 
   authorize() async {
     _authRepository
-        .getToken()
-        .then(view.onTokenReceived)
+        .authorize()
+        .then(view.onAuthorized)
         .catchError(view.onError);
   }
 }

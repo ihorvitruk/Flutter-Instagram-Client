@@ -23,6 +23,7 @@ dependencies:
   flutter_simple_dependency_injection: any
   flutter_webview_plugin: 0.3.0
   http: 0.12.0
+  flutter_secure_storage: ^3.2.0
 
 dev_dependencies:
   flutter_test:

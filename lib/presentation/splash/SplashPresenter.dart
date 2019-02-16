@@ -18,7 +18,7 @@ class SplashPresenter extends BasePresenter<SplashState> {
 
   checkAuthorization() async {
     _authRepository
-        .getAuthState()
+        .isLoggedIn()
         .then(view.onCheckAuthorizationComplete)
         .catchError(view.onError);
   }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram_client/domain/entity/auth/AuthState.dart';
 import 'package:flutter_instagram_client/presentation/Strings.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
-import 'package:flutter_instagram_client/presentation/checkcode/CheckCodeView.dart';
 import 'package:flutter_instagram_client/presentation/home/HomeView.dart';
 import 'package:flutter_instagram_client/presentation/login/LoginView.dart';
 import 'package:flutter_instagram_client/presentation/splash/SplashCallback.dart';
@@ -32,15 +30,12 @@ class SplashState extends BaseState<SplashPresenter>
     });
   }
 
-  onCheckAuthorizationComplete(AuthState authState) {
-    switch (authState) {
-      case AuthState.Ok:
+  onCheckAuthorizationComplete(bool isLoggedIn) {
+    switch (isLoggedIn) {
+      case true:
         push(HomeView());
         break;
-      case AuthState.WaitCode:
-        push(CheckCodeView());
-        break;
-      case AuthState.WaitPhone:
+      case false:
       default:
         push(LoginView());
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/home/HomeView.dart';
 import 'package:flutter_instagram_client/presentation/login/LoginPresenter.dart';
 import 'package:flutter_instagram_client/presentation/login/LoginViewCallback.dart';
 
@@ -23,7 +24,9 @@ class LoginState extends BaseState<LoginPresenter>
   }
 
   @override
-  onTokenReceived(String token) {
-    print(token);
+  onAuthorized(bool authorized) {
+    if (authorized) {
+      push(HomeView(), withReplacement: true);
+    }
   }
 }

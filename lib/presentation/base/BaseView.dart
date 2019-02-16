@@ -37,7 +37,7 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
 
   @protected
   push(BaseView view, {bool withReplacement = true}) {
-    var route = MaterialPageRoute(builder: (context) => view);
+    final route = MaterialPageRoute(builder: (context) => view);
     if (withReplacement) {
       Navigator.pushReplacement(context, route);
     } else {
