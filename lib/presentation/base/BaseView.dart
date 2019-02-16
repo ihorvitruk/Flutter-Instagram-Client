@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:flutter_instagram_client/presentation/base/BasePresenter.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseViewCallback.dart';
+import 'package:flutter_simple_dependency_injection/injector.dart';
 
 abstract class BaseView<S extends State<StatefulWidget>>
     extends StatefulWidget {
@@ -19,6 +19,18 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
   BaseState() {
     presenter = Injector.getInjector().get();
     presenter.view = this;
+  }
+
+  @override
+  void initState() {
+    presenter.init();
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    presenter.dispose();
+    super.dispose();
   }
 
   onError(Object error) {

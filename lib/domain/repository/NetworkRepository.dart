@@ -1,3 +1,5 @@
+import 'package:connectivity/connectivity.dart';
+
 abstract class NetworkRepository {
-  Future<bool> checkConnection();
+  Future<ConnectivityResult> checkConnection();
 }

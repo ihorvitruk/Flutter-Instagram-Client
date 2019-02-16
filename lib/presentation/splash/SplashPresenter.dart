@@ -12,7 +12,8 @@ class SplashPresenter extends BasePresenter<SplashState> {
   checkConnection() async {
     _networkRepository
         .checkConnection()
-        .then(view.onCheckInternetComplete)
+        .then((connectivityResult) =>
+            view.onCheckInternetComplete(isConnection(connectivityResult)))
         .catchError(view.onError);
   }
 
@@ -22,4 +23,8 @@ class SplashPresenter extends BasePresenter<SplashState> {
         .then(view.onCheckAuthorizationComplete)
         .catchError(view.onError);
   }
+
+  @override
+  onConnectionChanged(bool isConnection) =>
+      view.onCheckInternetComplete(isConnection);
 }
