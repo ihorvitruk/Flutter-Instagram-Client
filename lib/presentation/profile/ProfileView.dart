@@ -16,6 +16,8 @@ class ProfileState extends BaseState<ProfilePresenter>
   static const String _KEY_NUMBER = "number";
 
   String _profileText = "";
+  String _profileImageUrl = "";
+  bool _progressIndicatorVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +26,45 @@ class ProfileState extends BaseState<ProfilePresenter>
       number = Random().nextInt(1000);
       writeStorageValue(_KEY_NUMBER, number);
     }
-    return Center(
-        child: Column(children: [
-      MaterialButton(
-          onPressed: () {
-            setState(() {
-              writeStorageValue(_KEY_NUMBER, ++number);
-            });
-          },
-          child: Text("Number $number")),
-      Text(
-        _profileText,
-        style: TextStyle(color: Colors.black),
-      )
-    ]));
+    return Stack(children: [
+      Center(
+          child: Column(children: [
+        MaterialButton(
+            onPressed: () {
+              setState(() {
+                writeStorageValue(_KEY_NUMBER, ++number);
+              });
+            },
+            child: Text("Number $number")),
+        Image.network(_profileImageUrl),
+        Text(
+          _profileText,
+          style: TextStyle(color: Colors.black),
+        )
+      ])),
+      Visibility(
+          visible: _progressIndicatorVisible,
+          child: CircularProgressIndicator()),
+    ]);
+  }
+
+  @override
+  showProgress() {
+    setState(() {
+      _progressIndicatorVisible = true;
+    });
+  }
+
+  @override
+  hideProgress() {
+    _progressIndicatorVisible = false;
   }
 
   @override
   onProfileLoaded(Profile profile) {
     setState(() {
       _profileText = profile.toString();
+      _profileImageUrl = profile.profilePicture;
     });
   }
 }

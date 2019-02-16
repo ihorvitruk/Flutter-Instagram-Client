@@ -1,3 +1,4 @@
 1. Progress bar in BaseView when something is loading.
 2. Logout button
 3. refactor headers() mtehod in ContentRepositoryImpl (not read every time from secure storage?).
+4. Move away package:connectivity/connectivity.dar from BasePresenter to NetworkRepositoryImpl

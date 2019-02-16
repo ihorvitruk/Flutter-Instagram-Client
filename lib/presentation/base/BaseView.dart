@@ -33,6 +33,12 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
     super.dispose();
   }
 
+  @override
+  showProgress() {}
+
+  @override
+  hideProgress() {}
+
   onError(Object error) {
     print(error);
   }

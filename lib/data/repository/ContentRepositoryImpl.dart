@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_instagram_client/data/model/ProfileResponse.dart';
+import 'package:flutter_instagram_client/data/response/ProfileResponse.dart';
 import 'package:flutter_instagram_client/domain/entity/Profile.dart';
 import 'package:flutter_instagram_client/domain/repository/ContentRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/SecureStorageRepository.dart';

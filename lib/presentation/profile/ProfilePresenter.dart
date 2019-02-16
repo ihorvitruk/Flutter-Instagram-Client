@@ -19,9 +19,10 @@ class ProfilePresenter extends BasePresenter<ProfileViewCallback> {
   }
 
   _loadProfile() {
-    _contentRepository
-        .getProfile()
-        .then(view.onProfileLoaded)
-        .catchError(view.onError);
+    view.showProgress();
+    _contentRepository.getProfile().then((profile) {
+      view.onProfileLoaded(profile);
+      view.hideProgress();
+    }).catchError(view.onError);
   }
 }
