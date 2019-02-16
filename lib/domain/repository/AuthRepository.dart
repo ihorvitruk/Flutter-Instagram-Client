@@ -1,4 +1,5 @@
 abstract class AuthRepository {
+
   Future<bool> isLoggedIn();
 
   Future<bool> authorize();

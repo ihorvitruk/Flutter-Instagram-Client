@@ -1,7 +1,7 @@
 abstract class SecureStorageRepository {
-  Future<void> saveValue(String key, String value);
+  Future<void> saveToken(String value);
 
-  Future<String> readValue(String key);
+  Future<String> readToken();
 
-  Future<void> deleteValue(String key);
+  Future<void> deleteToken();
 }

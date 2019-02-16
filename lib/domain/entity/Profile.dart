@@ -2,7 +2,7 @@ import 'package:flutter_instagram_client/domain/entity/Counts.dart';
 import 'package:flutter_instagram_client/domain/entity/Entity.dart';
 
 class Profile extends Entity {
-  final int id;
+  final String id;
   final String username;
   final String profilePicture;
   final String fullName;

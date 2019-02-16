@@ -4,6 +4,6 @@ import 'package:flutter_instagram_client/domain/repository/NetworkRepository.dar
 class NetworkRepositoryImpl extends NetworkRepository {
   @override
   Future<ConnectivityResult> checkConnection() async {
-    return await (Connectivity().checkConnectivity());
+    return Connectivity().checkConnectivity();
   }
 }

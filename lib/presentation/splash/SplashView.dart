@@ -13,17 +13,11 @@ class SplashView extends BaseView<SplashState> {
 
 class SplashState extends BaseState<SplashPresenter>
     implements SplashViewCallback {
-  bool _noConnectionVisibility = false;
-
-  @override
-  initState() {
-    _checkConnection();
-    super.initState();
-  }
+  bool _noConnectionTextVisibility = false;
 
   onCheckInternetComplete(bool isConnection) {
     setState(() {
-      _noConnectionVisibility = !isConnection;
+      _noConnectionTextVisibility = !isConnection;
       if (isConnection) {
         presenter.checkAuthorization();
       }
@@ -50,17 +44,16 @@ class SplashState extends BaseState<SplashPresenter>
                 children: <Widget>[
           Text(Strings.appName),
           Visibility(
-              visible: _noConnectionVisibility,
+              visible: _noConnectionTextVisibility,
               child: MaterialButton(
-                  onPressed: () => _checkConnection(),
+                  onPressed: () => presenter.checkConnection(),
                   child: Text(Strings.noConnectionButtonText)))
         ])));
   }
 
-  _checkConnection() {
+  setNoConnectionTextVisibility(bool visible) {
     setState(() {
-      _noConnectionVisibility = false;
-      presenter.checkConnection();
+      _noConnectionTextVisibility = visible;
     });
   }
 }

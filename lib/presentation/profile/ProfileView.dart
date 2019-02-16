@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram_client/domain/entity/Profile.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
 import 'package:flutter_instagram_client/presentation/profile/ProfilePresenter.dart';
 import 'package:flutter_instagram_client/presentation/profile/ProfileViewCallback.dart';
@@ -14,6 +15,8 @@ class ProfileState extends BaseState<ProfilePresenter>
     implements ProfileViewCallback {
   static const String _KEY_NUMBER = "number";
 
+  String _profileText = "";
+
   @override
   Widget build(BuildContext context) {
     int number = readStorageValue(_KEY_NUMBER);
@@ -22,12 +25,25 @@ class ProfileState extends BaseState<ProfilePresenter>
       writeStorageValue(_KEY_NUMBER, number);
     }
     return Center(
-        child: MaterialButton(
-            onPressed: () {
-              setState(() {
-                writeStorageValue(_KEY_NUMBER, ++number);
-              });
-            },
-            child: Text("Number $number")));
+        child: Column(children: [
+      MaterialButton(
+          onPressed: () {
+            setState(() {
+              writeStorageValue(_KEY_NUMBER, ++number);
+            });
+          },
+          child: Text("Number $number")),
+      Text(
+        _profileText,
+        style: TextStyle(color: Colors.black),
+      )
+    ]));
+  }
+
+  @override
+  onProfileLoaded(Profile profile) {
+    setState(() {
+      _profileText = profile.toString();
+    });
   }
 }

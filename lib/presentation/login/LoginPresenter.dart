@@ -7,7 +7,13 @@ class LoginPresenter extends BasePresenter<LoginViewCallback> {
 
   LoginPresenter(this._authRepository);
 
-  authorize() async {
+  @override
+  init() {
+    _authorize();
+    super.init();
+  }
+
+  _authorize() async {
     _authRepository
         .authorize()
         .then(view.onAuthorized)

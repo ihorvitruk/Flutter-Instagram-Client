@@ -9,7 +9,14 @@ class SplashPresenter extends BasePresenter<SplashState> {
 
   SplashPresenter(this._networkRepository, this._authRepository);
 
+  @override
+  init() {
+    checkConnection();
+    super.init();
+  }
+
   checkConnection() async {
+    view.setNoConnectionTextVisibility(false);
     _networkRepository
         .checkConnection()
         .then((connectivityResult) =>
