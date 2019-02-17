@@ -4,6 +4,10 @@ class Strings {
   static String bottomBarChats = "Chats";
   static String bottomBarContacts = "Contacts";
   static String noConnectionButtonText = "No connection. Click to retry";
+  static String profilePosts = "posts";
+  static String profileFollowers = "followers";
+  static String profileFollowing = "following";
+
 
   //not translatable
   static String accessToken = "access_token";

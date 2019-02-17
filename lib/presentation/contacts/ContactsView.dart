@@ -11,7 +11,7 @@ class ContactsView extends BaseView<ContactsState> {
 class ContactsState extends BaseState<ContactsPresenter>
     implements ContactsViewCallback {
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context) {
     return Center(child: Text("Contacts"));
   }
 }

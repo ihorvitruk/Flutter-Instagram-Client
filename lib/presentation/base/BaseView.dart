@@ -16,6 +16,8 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
   @protected
   P presenter;
 
+  bool _isLoading = false;
+
   BaseState() {
     presenter = Injector.getInjector().get();
     presenter.view = this;
@@ -34,10 +36,16 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
   }
 
   @override
-  showProgress() {}
+  showProgress() {
+    setState(() {
+      _isLoading = true;
+    });
+  }
 
   @override
-  hideProgress() {}
+  hideProgress() {
+    _isLoading = false;
+  }
 
   onError(Object error) {
     print(error);
@@ -62,4 +70,16 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
       Navigator.push(context, route);
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      Visibility(visible: !_isLoading, child: create(context)),
+      Visibility(
+          visible: _isLoading,
+          child: Center(child: CircularProgressIndicator())),
+    ]);
+  }
+
+  Widget create(BuildContext context);
 }

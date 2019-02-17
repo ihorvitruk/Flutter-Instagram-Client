@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_client/domain/entity/Profile.dart';
+import 'package:flutter_instagram_client/presentation/Strings.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
 import 'package:flutter_instagram_client/presentation/profile/ProfilePresenter.dart';
 import 'package:flutter_instagram_client/presentation/profile/ProfileViewCallback.dart';
@@ -13,58 +12,90 @@ class ProfileView extends BaseView<ProfileState> {
 
 class ProfileState extends BaseState<ProfilePresenter>
     implements ProfileViewCallback {
-  static const String _KEY_NUMBER = "number";
-
-  String _profileText = "";
-  String _profileImageUrl = "";
-  bool _progressIndicatorVisible = false;
+  Profile _profile = Profile.empty();
 
   @override
-  Widget build(BuildContext context) {
-    int number = readStorageValue(_KEY_NUMBER);
-    if (number == null) {
-      number = Random().nextInt(1000);
-      writeStorageValue(_KEY_NUMBER, number);
-    }
-    return Stack(children: [
-      Center(
-          child: Column(children: [
-        MaterialButton(
-            onPressed: () {
-              setState(() {
-                writeStorageValue(_KEY_NUMBER, ++number);
-              });
-            },
-            child: Text("Number $number")),
-        Image.network(_profileImageUrl),
-        Text(
-          _profileText,
-          style: TextStyle(color: Colors.black),
-        )
-      ])),
-      Visibility(
-          visible: _progressIndicatorVisible,
-          child: CircularProgressIndicator()),
-    ]);
-  }
-
-  @override
-  showProgress() {
-    setState(() {
-      _progressIndicatorVisible = true;
-    });
-  }
-
-  @override
-  hideProgress() {
-    _progressIndicatorVisible = false;
+  Widget create(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.all(12),
+        child: Column(children: [
+          Container(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                Column(children: [
+                  Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.grey, width: 1.5)),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border:
+                                  Border.all(color: Colors.white, width: 5)),
+                          child: ClipOval(
+                              child: Image.network(
+                            _profile.profilePicture,
+                            width: 100,
+                            height: 100,
+                          )))),
+                  Text(_profile.username)
+                ]),
+                Column(
+                  children: [
+                    DefaultTextStyle(
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        child: Row(
+                          children: [
+                            Padding(
+                                child: Column(children: [
+                                  Text(
+                                    _profile.counts.media.toString(),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(Strings.profilePosts)
+                                ]),
+                                padding: EdgeInsets.all(14)),
+                            Padding(
+                                child: Column(children: [
+                                  Text(_profile.counts.followedBy.toString(),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(Strings.profileFollowers)
+                                ]),
+                                padding: EdgeInsets.all(14)),
+                            Padding(
+                              child: Column(children: [
+                                Text(_profile.counts.follows.toString(),
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold)),
+                                Text(Strings.profileFollowing)
+                              ]),
+                              padding: EdgeInsets.all(20),
+                            )
+                          ],
+                        )),
+                    Text(_profile.fullName)
+                  ],
+                )
+              ])),
+          Text(
+            _profile.bio,
+          )
+        ]));
   }
 
   @override
   onProfileLoaded(Profile profile) {
     setState(() {
-      _profileText = profile.toString();
-      _profileImageUrl = profile.profilePicture;
+      _profile = profile;
     });
   }
 }

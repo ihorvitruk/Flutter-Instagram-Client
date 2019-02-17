@@ -17,7 +17,7 @@ class HomeState extends BaseState<HomePresenter> implements HomeViewCallback {
   List<BaseView> _children = [ContactsView(), ChatsView(), ProfileView()];
 
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(Strings.appName)),
       body: _children[_currentIndex],

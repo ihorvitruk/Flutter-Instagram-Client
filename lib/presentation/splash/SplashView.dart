@@ -36,7 +36,7 @@ class SplashState extends BaseState<SplashPresenter>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context) {
     return Scaffold(
         body: Center(
             child: Column(

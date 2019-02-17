@@ -11,7 +11,7 @@ class ChatsView extends BaseView<ChatsState> {
 class ChatsState extends BaseState<ChatsPresenter>
     implements ChatsViewCallback {
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context) {
     return Center(child: Text("Chats"));
   }
 }

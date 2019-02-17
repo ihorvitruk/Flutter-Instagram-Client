@@ -6,4 +6,9 @@ class Counts extends Entity {
   final int followedBy;
 
   Counts(this.media, this.follows, this.followedBy);
+
+  Counts.empty()
+      : media = 0,
+        follows = 0,
+        followedBy = 0;
 }

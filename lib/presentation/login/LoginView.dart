@@ -13,7 +13,7 @@ class LoginView extends BaseView<LoginState> {
 class LoginState extends BaseState<LoginPresenter>
     implements LoginViewCallback {
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context) {
     return WebviewScaffold(url: null);
   }
 
