@@ -1,7 +1,7 @@
 import 'package:flutter_instagram_client/domain/entity/Entity.dart';
 
-abstract class Response<D> {
-  D _data;
+abstract class Response<E> {
+  E _data;
   Meta _meta;
 
   Response(Map<String, dynamic> json) {
@@ -9,15 +9,15 @@ abstract class Response<D> {
     _meta = Meta.fromJson(json["meta"]);
   }
 
-  D get data => _data;
+  E get data => _data;
 
   Meta get meta => _meta;
 
-  D fromDataJson(Map<String, dynamic> json);
+  E fromDataJson(Map<String, dynamic> json);
 }
 
-abstract class ListResponse<D extends Entity> {
-  List<D> _data;
+abstract class ListResponse<E extends Entity> {
+  List<E> _data;
   Meta _meta;
 
   ListResponse(Map<String, dynamic> json) {
@@ -25,19 +25,19 @@ abstract class ListResponse<D extends Entity> {
     _meta = Meta.fromJson(json["meta"]);
   }
 
-  List<D> get data => _data;
+  List<E> get data => _data;
 
   Meta get meta => _meta;
 
-  List<D> fromDataListJson(List<dynamic> jsonArray) {
-    final result = List<D>();
+  List<E> fromDataListJson(List<dynamic> jsonArray) {
+    final result = List<E>();
     for (var jsonObj in jsonArray) {
       result.add(fromDataJson(jsonObj));
     }
     return result;
   }
 
-  D fromDataJson(Map<String, dynamic> json);
+  E fromDataJson(Map<String, dynamic> json);
 }
 
 class Meta {

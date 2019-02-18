@@ -38,7 +38,7 @@ class AppInjector {
     //presenters
     injector.map<SplashPresenter>((i) => SplashPresenter(i.get(), i.get()));
     injector.map<HomePresenter>((i) => HomePresenter());
-    injector.map<CommentsPresenter>((i) => CommentsPresenter());
+    injector.map<CommentsPresenter>((i) => CommentsPresenter(i.get()));
     injector.map<PostsPresenter>((i) => PostsPresenter(i.get()));
     injector.map<ProfilePresenter>((i) => ProfilePresenter(i.get(), i.get()));
     injector.map<LoginPresenter>((i) => LoginPresenter(i.get()));

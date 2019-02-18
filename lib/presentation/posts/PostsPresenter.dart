@@ -12,6 +12,13 @@ class PostsPresenter extends BasePresenter<PostsViewCallback> {
     _loadPosts();
   }
 
+  @override
+  onConnectionChanged(bool isConnection) {
+    if (isConnection) {
+      _loadPosts();
+    }
+  }
+
   _loadPosts() {
     view.showProgress();
     _contentRepository.getPosts().then((posts) {
