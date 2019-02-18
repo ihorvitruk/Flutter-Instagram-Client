@@ -48,11 +48,11 @@ class AuthRepositoryImpl extends AuthRepository {
     authParams.addAll(commonParams);
     authParams.addAll({"response_type": "code"});
 
-    final authUrl = Uri.https(_hostUrl, API_AUTH, authParams);
-    webView.launch(authUrl.toString());
+    final authUri = Uri.https(_hostUrl, API_AUTH, authParams);
+    webView.launch(authUri.toString());
 
     final code = await onCode.first;
-    final tokenUrl = Uri.https(_hostUrl, API_TOKEN);
+    final tokenUri = Uri.https(_hostUrl, API_TOKEN);
 
     final tokenRequestBody = Map<String, String>();
     tokenRequestBody.addAll(commonParams);
@@ -62,7 +62,7 @@ class AuthRepositoryImpl extends AuthRepository {
       "grant_type": "authorization_code"
     });
     final response =
-        await http.post(tokenUrl.toString(), body: tokenRequestBody);
+        await http.post(tokenUri.toString(), body: tokenRequestBody);
     webView.cleanCookies();
     webView.close();
 

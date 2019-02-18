@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter_instagram_client/data/response/PostsResponse.dart';
 import 'package:flutter_instagram_client/data/response/ProfileResponse.dart';
+import 'package:flutter_instagram_client/domain/entity/Post.dart';
 import 'package:flutter_instagram_client/domain/entity/Profile.dart';
 import 'package:flutter_instagram_client/domain/repository/ContentRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/SecureStorageRepository.dart';
@@ -15,10 +17,17 @@ class ContentRepositoryImpl extends ContentRepository {
   ContentRepositoryImpl(this._hostUrl, this._secureStorageRepository);
 
   @override
-  Future<Profile> getProfile() async {
-    final uri = Uri.https(_hostUrl, "/v1/users/self", await _params());
+  Future<Profile> getProfile() async =>
+      ProfileResponse(await _request("/v1/users/self")).data;
+
+  @override
+  Future<List<Post>> getPosts() async =>
+      PostsResponse(await _request("/v1/users/self/media/recent")).data;
+
+  Future<Map<String, dynamic>> _request<D>(String endpoint) async {
+    final uri = Uri.https(_hostUrl, endpoint, await _params());
     Response response = await http.get(uri);
-    return ProfileResponse(jsonDecode(response.body)).data;
+    return jsonDecode(response.body);
   }
 
   Future<Map<String, String>> _params() async {
