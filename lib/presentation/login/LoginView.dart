@@ -9,7 +9,7 @@ class LoginView extends BaseView<LoginState> {
   LoginState state() => LoginState();
 }
 
-class LoginState extends BaseState<LoginPresenter>
+class LoginState extends BaseState<LoginPresenter, LoginView>
     implements LoginViewCallback {
   @override
   Widget create(BuildContext context) => Scaffold();
@@ -17,7 +17,7 @@ class LoginState extends BaseState<LoginPresenter>
   @override
   onAuthorized(bool authorized) {
     if (authorized) {
-      push(HomeView(), withReplacement: true);
+      push(HomeView());
     }
   }
 }

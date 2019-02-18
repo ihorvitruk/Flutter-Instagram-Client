@@ -12,7 +12,7 @@ abstract class BaseView<S extends State<StatefulWidget>>
   S state();
 }
 
-abstract class BaseState<P extends BasePresenter> extends State<BaseView>
+abstract class BaseState<P extends BasePresenter, V extends BaseView> extends State<V>
     implements BaseViewCallback {
   @protected
   P presenter;

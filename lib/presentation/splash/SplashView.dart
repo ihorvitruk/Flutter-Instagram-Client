@@ -11,7 +11,7 @@ class SplashView extends BaseView<SplashState> {
   SplashState state() => SplashState();
 }
 
-class SplashState extends BaseState<SplashPresenter>
+class SplashState extends BaseState<SplashPresenter, SplashView>
     implements SplashViewCallback {
   bool _noConnectionTextVisibility = false;
 

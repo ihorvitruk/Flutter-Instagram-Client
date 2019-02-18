@@ -11,7 +11,8 @@ class HomeView extends BaseView<HomeState> {
   HomeState state() => HomeState();
 }
 
-class HomeState extends BaseState<HomePresenter> implements HomeViewCallback {
+class HomeState extends BaseState<HomePresenter, HomeView>
+    implements HomeViewCallback {
   int _currentIndex = 0;
   List<BaseView> _children = [PostsView(), ProfileView()];
 

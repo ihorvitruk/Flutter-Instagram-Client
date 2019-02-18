@@ -13,11 +13,12 @@ class CommentsView extends BaseView<CommentsState> {
   CommentsState state() => CommentsState();
 }
 
-class CommentsState extends BaseState<CommentsPresenter>
+class CommentsState extends BaseState<CommentsPresenter, CommentsView>
     implements CommentsViewCallback {
   @override
   void initState() {
     super.initState();
+    presenter.loadComments(widget.postId);
   }
 
   @override

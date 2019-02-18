@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_client/domain/entity/Post.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
+import 'package:flutter_instagram_client/presentation/comments/CommentsView.dart';
 import 'package:flutter_instagram_client/presentation/posts/PostsPresenter.dart';
 import 'package:flutter_instagram_client/presentation/posts/PostsViewCallback.dart';
 
@@ -9,7 +10,7 @@ class PostsView extends BaseView<PostsState> {
   PostsState state() => PostsState();
 }
 
-class PostsState extends BaseState<PostsPresenter>
+class PostsState extends BaseState<PostsPresenter, PostsView>
     implements PostsViewCallback {
   var _posts = List<Post>();
 
@@ -23,7 +24,11 @@ class PostsState extends BaseState<PostsPresenter>
           Text("User liked: ${post.userHasLiked}"),
           Text("Liked by ${post.likesCount} people"),
           Text("#${post.tags.join(" #")}"),
-          Text("View ${post.commentsCount} comments"),
+          MaterialButton(
+              onPressed: () {
+                push(CommentsView(postId: post.id), withReplacement: false);
+              },
+              child: Text("View ${post.commentsCount} comments")),
           Text("Timestamp: ${post.createdTime}")
         ]);
       });

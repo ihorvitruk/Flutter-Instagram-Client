@@ -11,7 +11,7 @@ class ProfileView extends BaseView<ProfileState> {
   ProfileState state() => ProfileState();
 }
 
-class ProfileState extends BaseState<ProfilePresenter>
+class ProfileState extends BaseState<ProfilePresenter, ProfileView>
     implements ProfileViewCallback {
   Profile _profile = Profile.empty();
 
@@ -132,6 +132,6 @@ class ProfileState extends BaseState<ProfilePresenter>
 
   @override
   onLogoutSuccess(bool success) {
-    push(SplashView(), withReplacement: true);
+    push(SplashView());
   }
 }
