@@ -85,9 +85,7 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
     }
   }
 
-  pop() {
-    Navigator.pop(context);
-  }
+  pop() => Navigator.pop(context);
 
   @override
   Widget build(BuildContext context) {
