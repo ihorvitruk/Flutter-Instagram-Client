@@ -6,10 +6,10 @@ import 'package:flutter_instagram_client/domain/repository/AuthRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/ContentRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/NetworkRepository.dart';
 import 'package:flutter_instagram_client/domain/repository/SecureStorageRepository.dart';
-import 'package:flutter_instagram_client/presentation/posts/PostsPresenter.dart';
 import 'package:flutter_instagram_client/presentation/contacts/ContactsPresenter.dart';
 import 'package:flutter_instagram_client/presentation/home/HomePresenter.dart';
 import 'package:flutter_instagram_client/presentation/login/LoginPresenter.dart';
+import 'package:flutter_instagram_client/presentation/posts/PostsPresenter.dart';
 import 'package:flutter_instagram_client/presentation/profile/ProfilePresenter.dart';
 import 'package:flutter_instagram_client/presentation/splash/SplashPresenter.dart';
 import 'package:flutter_simple_dependency_injection/injector.dart';
@@ -26,18 +26,20 @@ class AppInjector {
     //repositories
     injector.map<NetworkRepository>((i) => NetworkRepositoryImpl(),
         isSingleton: true);
-    injector.map<SecureStorageRepository>((i) => SecureStorageRepositoryImpl());
+    injector.map<SecureStorageRepository>((i) => SecureStorageRepositoryImpl(),
+        isSingleton: true);
     injector.map<AuthRepository>(
         (i) => AuthRepositoryImpl(i.get(key: HOST_URL_KEY), i.get()),
         isSingleton: true);
     injector.map<ContentRepository>(
-        (i) => ContentRepositoryImpl(i.get(key: HOST_URL_KEY), i.get()));
+        (i) => ContentRepositoryImpl(i.get(key: HOST_URL_KEY), i.get()),
+        isSingleton: true);
 
     //presenters
     injector.map<SplashPresenter>((i) => SplashPresenter(i.get(), i.get()));
     injector.map<HomePresenter>((i) => HomePresenter());
     injector.map<ContactsPresenter>((i) => ContactsPresenter());
-    injector.map<PostsPresenter>((i) => PostsPresenter());
+    injector.map<PostsPresenter>((i) => PostsPresenter(i.get()));
     injector.map<ProfilePresenter>((i) => ProfilePresenter(i.get(), i.get()));
     injector.map<LoginPresenter>((i) => LoginPresenter(i.get()));
   }

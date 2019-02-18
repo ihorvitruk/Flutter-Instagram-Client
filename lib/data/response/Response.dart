@@ -29,7 +29,7 @@ abstract class ListResponse<D extends Entity> {
 
   Meta get meta => _meta;
 
-  List<D> fromDataListJson(List<Map<String, dynamic>> jsonArray) {
+  List<D> fromDataListJson(List<dynamic> jsonArray) {
     final result = List<D>();
     for (var jsonObj in jsonArray) {
       result.add(fromDataJson(jsonObj));
