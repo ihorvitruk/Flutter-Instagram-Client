@@ -22,7 +22,7 @@ class PostsState extends BaseState<PostsPresenter>
           Image.network(post.url),
           Text("User liked: ${post.userHasLiked}"),
           Text("Liked by ${post.likesCount} people"),
-          Text("${post.tags.join(", #")}"),
+          Text("#${post.tags.join(" #")}"),
           Text("View ${post.commentsCount} comments"),
           Text("Timestamp: ${post.createdTime}")
         ]);

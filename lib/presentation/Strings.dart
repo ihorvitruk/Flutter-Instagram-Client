@@ -2,7 +2,7 @@ class Strings {
   static String appName = "Instagram Client";
   static String bottomBarProfile = "Profile";
   static String bottomBarPosts = "Posts";
-  static String bottomBarContacts = "Contacts";
+  static String titleComments = "Comments";
   static String noConnectionButtonText = "No connection. Click to retry";
   static String profilePosts = "posts";
   static String profileFollowers = "followers";

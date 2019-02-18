@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_client/presentation/Strings.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
-import 'package:flutter_instagram_client/presentation/contacts/ContactsView.dart';
 import 'package:flutter_instagram_client/presentation/home/HomePresenter.dart';
 import 'package:flutter_instagram_client/presentation/home/HomeViewCallback.dart';
 import 'package:flutter_instagram_client/presentation/posts/PostsView.dart';
@@ -14,7 +13,7 @@ class HomeView extends BaseView<HomeState> {
 
 class HomeState extends BaseState<HomePresenter> implements HomeViewCallback {
   int _currentIndex = 0;
-  List<BaseView> _children = [ContactsView(), PostsView(), ProfileView()];
+  List<BaseView> _children = [PostsView(), ProfileView()];
 
   @override
   Widget create(BuildContext context) {
@@ -27,9 +26,6 @@ class HomeState extends BaseState<HomePresenter> implements HomeViewCallback {
             }),
         currentIndex: _currentIndex,
         items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.contacts),
-              title: Text(Strings.bottomBarContacts)),
           BottomNavigationBarItem(
               icon: Icon(Icons.collections),
               title: Text(Strings.bottomBarPosts)),
