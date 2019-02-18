@@ -8,6 +8,8 @@ class Strings {
   static String profileFollowers = "followers";
   static String profileFollowing = "following";
   static String profileLogout = "Logout";
+  static String errorOccurred = "Error occurred";
+  static String close = "Close";
 
   //not translatable
   static String accessToken = "access_token";
