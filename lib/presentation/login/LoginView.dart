@@ -3,7 +3,6 @@ import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
 import 'package:flutter_instagram_client/presentation/home/HomeView.dart';
 import 'package:flutter_instagram_client/presentation/login/LoginPresenter.dart';
 import 'package:flutter_instagram_client/presentation/login/LoginViewCallback.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class LoginView extends BaseView<LoginState> {
   @override
@@ -13,9 +12,7 @@ class LoginView extends BaseView<LoginState> {
 class LoginState extends BaseState<LoginPresenter>
     implements LoginViewCallback {
   @override
-  Widget create(BuildContext context) {
-    return WebviewScaffold(url: null);
-  }
+  Widget create(BuildContext context) => Scaffold();
 
   @override
   onAuthorized(bool authorized) {

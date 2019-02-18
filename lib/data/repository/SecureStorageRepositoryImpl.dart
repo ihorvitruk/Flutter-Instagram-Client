@@ -12,12 +12,12 @@ class SecureStorageRepositoryImpl extends SecureStorageRepository {
   }
 
   @override
-  Future<void> saveToken(String value) {
+  Future<void> saveToken(String value) async {
     return _saveValue(STORAGE_KEY_TOKEN, value);
   }
 
   @override
-  Future<void> deleteToken() {
+  Future<void> deleteToken() async {
     return _deleteValue(STORAGE_KEY_TOKEN);
   }
 

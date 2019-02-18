@@ -16,6 +16,7 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
   @protected
   P presenter;
 
+  bool _contentVisible = true;
   bool _isLoading = false;
 
   BaseState() {
@@ -25,8 +26,8 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
 
   @override
   void initState() {
-    presenter.init();
     super.initState();
+    presenter.init();
   }
 
   @override
@@ -36,15 +37,19 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
   }
 
   @override
-  showProgress() {
+  showProgress({bool contentVisible = false}) {
     setState(() {
+      _contentVisible = contentVisible;
       _isLoading = true;
     });
   }
 
   @override
   hideProgress() {
-    _isLoading = false;
+    setState(() {
+      _contentVisible = true;
+      _isLoading = false;
+    });
   }
 
   onError(Object error) {
@@ -74,7 +79,7 @@ abstract class BaseState<P extends BasePresenter> extends State<BaseView>
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Visibility(visible: !_isLoading, child: create(context)),
+      Visibility(visible: _contentVisible, child: create(context)),
       Visibility(
           visible: _isLoading,
           child: Center(child: CircularProgressIndicator())),

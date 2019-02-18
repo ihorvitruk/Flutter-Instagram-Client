@@ -16,6 +16,7 @@ abstract class BasePresenter<V extends BaseViewCallback> {
         .listen((ConnectivityResult result) {
       onConnectionChanged(isConnection(result));
     });
+    connectivitySubscription.resume();
   }
 
   @mustCallSuper
@@ -24,6 +25,15 @@ abstract class BasePresenter<V extends BaseViewCallback> {
     view = null;
   }
 
+  listenToConnectivityChanges(bool shouldListen) {
+    if (shouldListen) {
+      connectivitySubscription.resume();
+    } else {
+      connectivitySubscription.pause();
+    }
+  }
+
+  @protected
   onConnectionChanged(bool isConnection) {}
 
   @protected

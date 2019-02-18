@@ -1,7 +1,7 @@
 abstract class BaseViewCallback {
   onError(Object error);
 
-  showProgress();
+  showProgress({bool contentVisible});
 
   hideProgress();
 }

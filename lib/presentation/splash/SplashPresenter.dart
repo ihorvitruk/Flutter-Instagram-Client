@@ -11,8 +11,9 @@ class SplashPresenter extends BasePresenter<SplashState> {
 
   @override
   init() {
-    checkConnection();
     super.init();
+    listenToConnectivityChanges(false);
+    checkConnection();
   }
 
   checkConnection() async {

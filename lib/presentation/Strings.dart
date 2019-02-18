@@ -7,7 +7,7 @@ class Strings {
   static String profilePosts = "posts";
   static String profileFollowers = "followers";
   static String profileFollowing = "following";
-
+  static String profileLogout = "Logout";
 
   //not translatable
   static String accessToken = "access_token";

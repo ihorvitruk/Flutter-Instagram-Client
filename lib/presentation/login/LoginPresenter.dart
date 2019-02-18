@@ -9,8 +9,8 @@ class LoginPresenter extends BasePresenter<LoginViewCallback> {
 
   @override
   init() {
-    _authorize();
     super.init();
+    _authorize();
   }
 
   _authorize() async {

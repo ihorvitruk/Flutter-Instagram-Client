@@ -17,9 +17,9 @@ abstract class Response<D extends Entity> {
 }
 
 class Meta {
-  final int code;
-  final String errorType;
-  final String errorMessage;
+  final code;
+  final errorType;
+  final errorMessage;
 
   Meta.fromJson(Map<String, dynamic> json)
       : code = json["code"],

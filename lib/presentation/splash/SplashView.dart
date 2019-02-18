@@ -18,6 +18,7 @@ class SplashState extends BaseState<SplashPresenter>
   onCheckInternetComplete(bool isConnection) {
     setState(() {
       _noConnectionTextVisibility = !isConnection;
+      presenter.listenToConnectivityChanges(!isConnection);
       if (isConnection) {
         presenter.checkAuthorization();
       }

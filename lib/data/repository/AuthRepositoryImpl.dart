@@ -25,12 +25,13 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<bool> isLoggedIn() async {
-    return _secureStorageRepository.readToken() != null;
+    final token = await _secureStorageRepository.readToken();
+    return Future.value(token != null);
   }
 
   @override
   Future<bool> authorize() async {
-    Stream<String> onCode = await _server();
+    final onCode = await _server();
     final webView = new FlutterWebviewPlugin();
 
     Map<String, dynamic> appCredentials =
@@ -38,20 +39,30 @@ class AuthRepositoryImpl extends AuthRepository {
     String appId = appCredentials[APP_ID_KEY];
     String appSecret = appCredentials[APP_SECRET_KEY];
 
-    final authUrl = Uri.https(_hostUrl,
-        "$API_AUTH?client_id=$appId&redirect_uri=$REDIRECT_URI&response_type=code");
-    webView.launch(authUrl.toString());
-    final String code = await onCode.first;
-    final tokenUrl = _hostUrl + API_TOKEN;
-    final tokenRequestBody = {
+    final commonParams = {
       "client_id": appId,
       "redirect_uri": REDIRECT_URI,
+    };
+
+    final authParams = Map<String, String>();
+    authParams.addAll(commonParams);
+    authParams.addAll({"response_type": "code"});
+
+    final authUrl = Uri.https(_hostUrl, API_AUTH, authParams);
+    webView.launch(authUrl.toString());
+
+    final code = await onCode.first;
+    final tokenUrl = Uri.https(_hostUrl, API_TOKEN);
+
+    final tokenRequestBody = Map<String, String>();
+    tokenRequestBody.addAll(commonParams);
+    tokenRequestBody.addAll({
       "client_secret": appSecret,
       "code": code,
       "grant_type": "authorization_code"
-    };
-    final http.Response response =
-        await http.post(tokenUrl, body: tokenRequestBody);
+    });
+    final response =
+        await http.post(tokenUrl.toString(), body: tokenRequestBody);
     webView.cleanCookies();
     webView.close();
 
@@ -61,16 +72,17 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<bool> logout() {
-    return null;
+  Future<bool> logout() async {
+    await _secureStorageRepository.deleteToken();
+    return true;
   }
 
   Future<Stream<String>> _server() async {
-    final StreamController<String> onCode = new StreamController();
+    final onCode = new StreamController<String>();
     HttpServer server =
         await HttpServer.bind(InternetAddress.loopbackIPv4, 8585, shared: true);
     server.listen((HttpRequest request) async {
-      final String code = request.uri.queryParameters["code"];
+      final code = request.uri.queryParameters["code"];
       request.response
         ..statusCode = 200
         ..headers.set("Content-Type", ContentType.html.mimeType);
