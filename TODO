@@ -2,4 +2,4 @@
 2. Move away package:connectivity/connectivity.dar from BasePresenter to NetworkRepositoryImpl
 3. Add unit testing
 4. Add exceptions to "domain" layer, and implement correct Error-handling
-5. 
+5.
