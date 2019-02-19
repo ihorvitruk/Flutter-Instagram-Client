@@ -4,6 +4,7 @@ import 'package:flutter_instagram_client/presentation/Strings.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
 import 'package:flutter_instagram_client/presentation/comments/CommentsCallback.dart';
 import 'package:flutter_instagram_client/presentation/comments/CommentsPresenter.dart';
+import 'package:timeago/timeago.dart' as timeAgo;
 
 class CommentsView extends BaseView<CommentsState> {
   final postId;
@@ -31,13 +32,27 @@ class CommentsState extends BaseState<CommentsPresenter, CommentsView>
           itemCount: _comments.length,
           itemBuilder: (BuildContext context, int index) {
             final comment = _comments[index];
-            return Padding(
-                padding: EdgeInsets.all(12),
-                child: Column(children: [
-                  Text(comment.from),
-                  Text(comment.text),
-                  Text(comment.createdTime)
-                ]));
+            return DefaultTextStyle(
+                style: TextStyle(color: Colors.black, fontSize: 16),
+                child: Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Text(comment.from,
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold))),
+                          Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Text(comment.text)),
+                          Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Text(_formatTimeAgo(comment.createdTime),
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.grey)))
+                        ])));
           }));
 
   @override
@@ -45,5 +60,12 @@ class CommentsState extends BaseState<CommentsPresenter, CommentsView>
     setState(() {
       _comments = comments;
     });
+  }
+
+  _formatTimeAgo(String createdTime) {
+    final millisecondsAgo = Duration(
+        milliseconds: DateTime.now().millisecondsSinceEpoch -
+            int.parse(createdTime) * 1000);
+    return timeAgo.format(DateTime.now().subtract(millisecondsAgo));
   }
 }
