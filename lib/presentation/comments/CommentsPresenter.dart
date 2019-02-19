@@ -8,8 +8,9 @@ class CommentsPresenter extends BasePresenter<CommentsViewCallback> {
   CommentsPresenter(this._contentRepository);
 
   loadComments(String postId) {
-    view.showProgress();
+    view.showProgress(contentVisible: true);
     _contentRepository.getComments(postId).then((comments) {
+      view.onCommentsLoaded(comments);
       view.hideProgress();
     }).catchError((error) {
       view.hideProgress();

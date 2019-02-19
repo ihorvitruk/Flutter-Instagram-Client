@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_client/presentation/Strings.dart';
 import 'package:flutter_instagram_client/presentation/base/BasePresenter.dart';
@@ -12,8 +13,8 @@ abstract class BaseView<S extends State<StatefulWidget>>
   S state();
 }
 
-abstract class BaseState<P extends BasePresenter, V extends BaseView> extends State<V>
-    implements BaseViewCallback {
+abstract class BaseState<P extends BasePresenter, V extends BaseView>
+    extends State<V> implements BaseViewCallback {
   @protected
   P presenter;
 
@@ -77,7 +78,7 @@ abstract class BaseState<P extends BasePresenter, V extends BaseView> extends St
 
   @protected
   push(Widget view, {bool withReplacement = true}) {
-    final route = MaterialPageRoute(builder: (context) => view);
+    final route = CupertinoPageRoute(builder: (context) => view);
     if (withReplacement) {
       Navigator.pushReplacement(context, route);
     } else {

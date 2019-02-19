@@ -7,10 +7,13 @@ class PostsResponse extends ListResponse<Post> {
   @override
   Post fromDataJson(Map<String, dynamic> json) => Post(
       json["id"],
-      json["images"]["standard_resolution"]["url"],
+      fromImageJson(json["images"]["standard_resolution"]),
       json["created_time"],
       json["user_has_liked"],
       json["likes"]["count"],
-      json["tags"],
+      List<String>.from(json["tags"]),
       json["comments"]["count"]);
+
+  Picture fromImageJson(Map<String, dynamic> json) =>
+      Picture(json["url"], json["width"], json["height"]);
 }

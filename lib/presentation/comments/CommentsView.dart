@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_client/domain/entity/Comment.dart';
+import 'package:flutter_instagram_client/presentation/Strings.dart';
 import 'package:flutter_instagram_client/presentation/base/BaseView.dart';
 import 'package:flutter_instagram_client/presentation/comments/CommentsCallback.dart';
 import 'package:flutter_instagram_client/presentation/comments/CommentsPresenter.dart';
@@ -15,6 +16,8 @@ class CommentsView extends BaseView<CommentsState> {
 
 class CommentsState extends BaseState<CommentsPresenter, CommentsView>
     implements CommentsViewCallback {
+  var _comments = List<Comment>();
+
   @override
   void initState() {
     super.initState();
@@ -22,12 +25,25 @@ class CommentsState extends BaseState<CommentsPresenter, CommentsView>
   }
 
   @override
-  Widget create(BuildContext context) {
-    return Center(child: Text("Comments"));
-  }
+  Widget create(BuildContext context) => Scaffold(
+      appBar: AppBar(title: Text(Strings.titleComments)),
+      body: ListView.builder(
+          itemCount: _comments.length,
+          itemBuilder: (BuildContext context, int index) {
+            final comment = _comments[index];
+            return Padding(
+                padding: EdgeInsets.all(12),
+                child: Column(children: [
+                  Text(comment.from),
+                  Text(comment.text),
+                  Text(comment.createdTime)
+                ]));
+          }));
 
   @override
   onCommentsLoaded(List<Comment> comments) {
-    print(comments);
+    setState(() {
+      _comments = comments;
+    });
   }
 }
