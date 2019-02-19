@@ -1,2 +1,5 @@
 1. Refactor headers() method in ContentRepositoryImpl (not read every time from secure storage?).
 2. Move away package:connectivity/connectivity.dar from BasePresenter to NetworkRepositoryImpl
+3. Add unit testing
+4. Add exceptions to "domain" layer, and implement correct Error-handling
+5. 
