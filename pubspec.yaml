@@ -21,7 +21,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   connectivity: 0.4.0+1
   flutter_simple_dependency_injection: any
-  flutter_webview_plugin: 0.3.0
+  flutter_webview_plugin: 0.3.0+2
   http: 0.12.0
   flutter_secure_storage: ^3.2.0
   url_launcher: 5.0.1
