@@ -1,4 +1,6 @@
 The rest description is comming soon!
-<p align="center">
-  <img src="github/flutter_instagram_client.gif" width="300" height="610">
-</p
+
+  Run on Android | Run on iPhone
+   --- |  ---
+   <img src="github/flutter_instagram_client_android.gif" width="200" height="407"> | <img src="github/flutter_instagra_client_ios.gif" width="200" height="402">
+
